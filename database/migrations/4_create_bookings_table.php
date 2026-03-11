@@ -20,8 +20,8 @@ return new class extends Migration
 
             $table->string('tujuan');
 
-            $table->timestamp('tanggal_mulai');
-            $table->timestamp('tanggal_selesai');
+            $table->dateTime('tanggal_mulai');
+            $table->dateTime('tanggal_selesai');
 
             $table->tinyInteger('status')
                 ->comment('1=Pending, 2=Approved, 3=Rejected, 4=Complete');

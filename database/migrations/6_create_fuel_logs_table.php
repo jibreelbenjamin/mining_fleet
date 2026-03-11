@@ -15,21 +15,16 @@ return new class extends Migration
             $table->id('id_fuel_log');
 
             $table->unsignedBigInteger('booking_id');
-            $table->unsignedBigInteger('vehicle_id');
 
             $table->decimal('liter', 10,2);
             $table->decimal('harga_per_liter', 10,2);
             $table->decimal('total', 12,2);
 
-            $table->timestamp('tanggal');
+            $table->dateTime('tanggal');
 
             $table->foreign('booking_id')
                 ->references('id_booking')
                 ->on('bookings');
-
-            $table->foreign('vehicle_id')
-                ->references('id_vehicle')
-                ->on('vehicles');
         });
     }
 

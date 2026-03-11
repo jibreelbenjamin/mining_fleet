@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id('id_driver');
             $table->string('nama_driver');
             $table->enum('jenis_kelamin', ['L','P']);
+            $table->string('alamat')->nullable();
+            $table->string('telepon');
         });
     }
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('role', ['admin','supervisor','manager']);
+            $table->enum('role', ['admin', 'employee', 'supervisor','manager']);
             $table->timestamp('created_at')->useCurrent();
         });
 
