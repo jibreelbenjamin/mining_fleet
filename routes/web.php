@@ -12,6 +12,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\BookingListController;
 use App\Http\Controllers\FuelLogController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\ReportController;
 
 Route::middleware(['guest'])->group(function () {
     
@@ -78,4 +79,7 @@ Route::middleware(['auth','role:admin,employee,supervisor,manager'])->group(func
     Route::get('/vehicle', [VehicleController::class, 'index'])->name('dashboard.vehicle');
     Route::get('/driver', [DriverController::class, 'index'])->name('dashboard.driver');
     Route::get('/log', [LogController::class, 'index'])->name('dashboard.log');
+
+    Route::get('/report', [ReportController::class, 'index'])->name('dashboard.report');
+    Route::get('/report/export', [ReportController::class, 'export'])->name('dashboard.report.export');
 });

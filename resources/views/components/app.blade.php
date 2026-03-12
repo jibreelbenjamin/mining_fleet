@@ -167,6 +167,11 @@
                             Pesetujuan
                         </a>
                     </li>
+                    <li>
+                        <a class="{{ $page == 'report' ? $sActive : $sIdle }}" href="{{ route('dashboard.report') }}">
+                            Laporan periodik
+                        </a>
+                    </li>
                     @endif
                     </ul>
                     <!-- End List -->
