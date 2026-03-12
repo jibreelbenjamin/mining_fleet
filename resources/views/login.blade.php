@@ -1,7 +1,7 @@
 @php
     $title  = 'Welcome'
 @endphp
-<x-head :title ='$title '>
+<x-head :title='$title'>
     <div class="flex items-center justify-center min-h-screen">
         <div class="w-md mt-7 bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-xl shadow-2xs">
           <div class="p-4 sm:p-7">

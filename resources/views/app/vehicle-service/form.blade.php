@@ -2,10 +2,9 @@
     $title = $mode == 'update' ? "Update jadwal servis" : "Menambahkan jadwal servis";
     $id_data = 'id_vehicle_service';
     $echo = "jadwal servis";
-    $page = 'vehicle_service';
+    $page = 'vehicle-service';
 @endphp
 <x-app :page='$page' :title='$title'>
-<!-- Hire Us -->
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
   <div class="max-w-xl mx-auto">
     <div class="text-center">
@@ -41,10 +40,11 @@
                   }' name="vehicle_id" class="hidden">
                   <option value="">Pilih kendaraan</option>
                   @foreach ($vehicle as $item)                      
-                  <option value="{{ $item->id_vehicle }}" {{ $mode == 'update' ? ($item->id_vehicle == $data->vehicle_id ? 'selected' : '') : ($item->id_vehicle == old('vehicle_id') ? 'selected' : '') }} data-hs-select-option='{
-                      "description": "{{ $item->plat_nomor }}"
+                  <option value="{{ $item->id_vehicle }}" {{ $mode == 'update' ? ($item->id_vehicle == $data->vehicle_id ? 'selected' : '') : ($item->id_vehicle == old('vehicle_id') ? 'selected' : '') }} 
+                    {{ $item->status == 1 ? '' : 'disabled' }} data-hs-select-option='{
+                      "description": "{{ $item->status == 1 ? 'Tersedia' : 'Tidak tersedia' }}"
                     }'>
-                    {{ $item->nama_kendaraan }} ({{ $item->jenis_kendaraan }})
+                    {{ $item->nama_kendaraan }} {{ $item->jenis_kendaraan }} ({{ $item->plat_nomor }})
                   </option>
                   @endforeach
                 </select>
@@ -116,7 +116,6 @@
     </div>
   </div>
 </div>
-<!-- End Hire Us -->
 </x-app>
 <script>
   document.addEventListener('DOMContentLoaded', function () {

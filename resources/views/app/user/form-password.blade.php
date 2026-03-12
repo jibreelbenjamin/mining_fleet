@@ -5,7 +5,6 @@
     $page = 'user';
 @endphp
 <x-app :page='$page' :title='$title'>
-<!-- Hire Us -->
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
   <div class="max-w-xl mx-auto">
     <div class="text-center">
@@ -84,6 +83,5 @@
     </div>
   </div>
 </div>
-<!-- End Hire Us -->
 </x-app>
 

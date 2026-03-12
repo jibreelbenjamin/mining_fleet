@@ -1,8 +1,8 @@
 @php
-    $title = "Daftar sopir";
-    $id_data = 'id_driver';
-    $echo = "sopir";
-    $page = 'driver';
+    $title = "Daftar jadwal servis";
+    $id_data = 'id_vehicle_service';
+    $echo = "jadwal servis";
+    $page = 'vehicle-service';
 @endphp
 <x-app :page='$page' :title='$title'>
     <div class="-m-1.5 overflow-x-auto">
@@ -22,12 +22,10 @@
                 </div>
               </div>
             </div>
-            @if (Auth::user()->role == 'admin')                
             <a href="{{ route('dashboard.'.$page.'.create') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
               <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
               Tambah {{ $echo }}
             </a>
-            @endif
 
             <!-- End Input -->
 
@@ -49,7 +47,7 @@
                 <th scope="col" class="px-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-gray-800">
-                      Nama sopir
+                      Kendaraan
                     </span>
                   </div>
                 </th>
@@ -57,7 +55,7 @@
                 <th scope="col" class="px-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-gray-800">
-                      Jenis kelamin
+                      Tanggal servis
                     </span>
                   </div>
                 </th>
@@ -65,7 +63,7 @@
                 <th scope="col" class="px-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-gray-800">
-                      Alamat
+                      Keterangan
                     </span>
                   </div>
                 </th>
@@ -73,7 +71,15 @@
                 <th scope="col" class="px-6 py-3 text-start">
                   <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase text-gray-800">
-                      Telepon
+                      Total biaya
+                    </span>
+                  </div>
+                </th>
+
+                <th scope="col" class="px-6 py-3 text-start">
+                  <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase text-gray-800">
+                      Status
                     </span>
                   </div>
                 </th>
@@ -81,8 +87,7 @@
                 <th scope="col" class="px-6 py-3 text-end"></th>
               </tr>
             </thead>
-
-            <tbody class="divide-y divide-gray-200">         
+            <tbody class="divide-y divide-gray-200">       
               @forelse ($data as $item)
               <tr>
                 <td class="size-px whitespace-nowrap">
@@ -92,20 +97,40 @@
                 </td>
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-2">
-                    <span class="text-sm text-gray-600">{{ $item->nama_driver }}</span>
+                    <span class="text-sm text-gray-600">{{ $item->vehicle->nama_kendaraan }} ({{ $item->vehicle->jenis_kendaraan }})</span>
                   </div>
                 </td>
                 <td class="size-px whitespace-nowrap">
                   <div class="px-6 py-2">
-                    @if ($item->jenis_kelamin == 'L')
+                    <span class="text-sm text-gray-600">{{ $item->service_date }}</span>
+                  </div>
+                </td>
+                <td class="size-px whitespace-nowrap">
+                  <div class="px-6 py-2">
+                    <span class="text-sm text-gray-600">{{ $item->keterangan }}</span>
+                  </div>
+                </td>
+                <td class="size-px whitespace-nowrap">
+                  <div class="px-6 py-2">
+                    <span class="text-sm text-gray-600">Rp {{ number_format($item->cost) }}</span>
+                  </div>
+                </td>
+                <td class="size-px whitespace-nowrap">
+                  <div class="px-6 py-2">
+                    @if ($item->status === 1)
                       <span class="inline-flex items-center gap-1.5 py-0.5 px-2 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
-                        <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mars-icon lucide-mars"><path d="M16 3h5v5"/><path d="m21 3-6.75 6.75"/><circle cx="10" cy="14" r="6"/></svg>
-                        Laki-laki
+                        <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-fading-icon lucide-clock-fading"><path d="M12 2a10 10 0 0 1 7.38 16.75"/><path d="M12 6v6l4 2"/><path d="M2.5 8.875a10 10 0 0 0-.5 3"/><path d="M2.83 16a10 10 0 0 0 2.43 3.4"/><path d="M4.636 5.235a10 10 0 0 1 .891-.857"/><path d="M8.644 21.42a10 10 0 0 0 7.631-.38"/></svg>
+                        Persiapan
                       </span>
-                    @elseif ($item->jenis_kelamin == 'P')
-                      <span class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium bg-pink-100 text-pink-800">
-                        <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-venus-icon lucide-venus"><path d="M12 15v7"/><path d="M9 19h6"/><circle cx="12" cy="9" r="6"/></svg>
-                        Perempuan
+                    @elseif ($item->status === 2)
+                      <span class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                        <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-arrow-up-icon lucide-clock-arrow-up"><path d="M12 6v6l1.56.78"/><path d="M13.227 21.925a10 10 0 1 1 8.767-9.588"/><path d="m14 18 4-4 4 4"/><path d="M18 22v-8"/></svg>
+                        Sedang diservis
+                      </span>
+                    @elseif ($item->status === 3)
+                      <span class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium bg-teal-100 text-teal-800">
+                        <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-check-icon lucide-clock-check"><path d="M12 6v6l4 2"/><path d="M22 12a10 10 0 1 0-11 9.95"/><path d="m22 16-5.5 5.5L14 19"/></svg>
+                        Selesai
                       </span>
                     @else
                       <span class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
@@ -115,18 +140,6 @@
                   </div>
                 </td>
                 <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-2">
-                    <span class="text-sm text-gray-600">{{ $item->alamat ?? '-' }}</span>
-                  </div>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <div class="px-6 py-2">
-                    <span class="text-sm text-gray-600">{{ $item->telepon }}</span>
-                  </div>
-                </td>
-
-                <td class="size-px whitespace-nowrap">
-                  @if (Auth::user()->role == 'admin')
                   <div class="px-6 py-1.5 flex justify-end">
                     <div class="group inline-flex items-center divide-x divide-gray-300 border border-gray-300 bg-white shadow-2xs rounded-lg transition-all">
 
@@ -141,7 +154,7 @@
                             <span class="block py-2 px-3 text-xs font-medium uppercase text-gray-400">
                               Actions
                             </span>
-                            <button class="btn-detail flex items-center w-full gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-detail" data-hs-overlay="#hs-detail" data-nama="{{ $item->nama_driver }}" data-jenis="{{ $item->jenis_kelamin }}" data-alamat="{{ $item->alamat ?? '-' }}" data-telepon="{{ $item->telepon }}">
+                            <button class="btn-detail flex items-center w-full gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-detail" data-hs-overlay="#hs-detail" data-kendaraan="{{ $item->vehicle->nama_kendaraan }} ({{ $item->vehicle->jenis_kendaraan }})" data-tanggal="{{ $item->service_date }}" data-keterangan="{{ $item->keterangan }}" data-biaya="Rp {{ number_format($item->cost) }}" data-status="{{ $item->status }}">
                               <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-icon lucide-file"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/></svg>
                               Detail
                             </button>
@@ -149,7 +162,7 @@
                               <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil-icon lucide-pencil"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
                               Edit
                             </a>
-                            <button class="btn-hapus flex items-center w-full gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-delete-alert" data-hs-overlay="#hs-delete-alert" data-id="{{ $item->$id_data }}" data-nama="{{ $item->nama_driver }}">
+                            <button class="btn-hapus flex items-center w-full gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-delete-alert" data-hs-overlay="#hs-delete-alert" data-id="{{ $item->$id_data }}" data-nama="{{ $item->vehicle->nama_kendaraan }}">
                               <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                               Hapus
                             </button>
@@ -158,7 +171,6 @@
                       </div>
                     </div>
                   </div>
-                  @endif
                 </td>
               </tr>
               @empty
@@ -236,28 +248,33 @@
 
         btnTrig.forEach(btn => {
             btn.addEventListener('click', function () {
-                const nama = this.dataset.nama;
-                const jenis = this.dataset.jenis;
-                const alamat = this.dataset.alamat;
-                const telepon = this.dataset.telepon;
+                const kendaraan = this.dataset.kendaraan;
+                const tanggal = this.dataset.tanggal;
+                const keterangan = this.dataset.keterangan;
+                const biaya = this.dataset.biaya;
+                const status = this.dataset.status;
 
                 function badge(key){
                     switch (key) {
-                            case "L":
-                                return `<span class="inline-flex items-center gap-1.5 py-0.5 px-2 text-xs font-medium bg-blue-100 text-blue-800 rounded-full"> <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mars-icon lucide-mars"><path d="M16 3h5v5"/><path d="m21 3-6.75 6.75"/><circle cx="10" cy="14" r="6"/></svg> Laki-laki </span>`;
+                            case "1":
+                                return `<span class="inline-flex items-center gap-1.5 py-0.5 px-2 text-xs font-medium bg-blue-100 text-blue-800 rounded-full"> <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-fading-icon lucide-clock-fading"><path d="M12 2a10 10 0 0 1 7.38 16.75"/><path d="M12 6v6l4 2"/><path d="M2.5 8.875a10 10 0 0 0-.5 3"/><path d="M2.83 16a10 10 0 0 0 2.43 3.4"/><path d="M4.636 5.235a10 10 0 0 1 .891-.857"/><path d="M8.644 21.42a10 10 0 0 0 7.631-.38"/></svg> Persiapan </span>`;
                                 break;
-                            case "P":
-                                return `<span class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium bg-pink-100 text-pink-800"> <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-venus-icon lucide-venus"><path d="M12 15v7"/><path d="M9 19h6"/><circle cx="12" cy="9" r="6"/></svg> Perempuan </span>`;
+                            case "2":
+                                return `<span class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium bg-orange-100 text-orange-800"> <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-arrow-up-icon lucide-clock-arrow-up"><path d="M12 6v6l1.56.78"/><path d="M13.227 21.925a10 10 0 1 1 8.767-9.588"/><path d="m14 18 4-4 4 4"/><path d="M18 22v-8"/></svg> Sedang diservis </span>`;
+                                break;
+                            case "3":
+                                return `<span class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium bg-teal-100 text-teal-800"> <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-check-icon lucide-clock-check"><path d="M12 6v6l4 2"/><path d="M22 12a10 10 0 1 0-11 9.95"/><path d="m22 16-5.5 5.5L14 19"/></svg> Selesai </span>`;
                                 break;
                             default:
                                 return '<span class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium bg-gray-100 text-gray-800"> Unknown </span>';
                         }
                 }
 
-                document.getElementById('nama_d').innerText = nama
-                document.getElementById('jenis_d').innerHTML = badge(jenis)
-                document.getElementById('alamat_d').innerText = alamat
-                document.getElementById('telepon_d').innerText = telepon
+                document.getElementById('kendaraan_d').innerText = kendaraan
+                document.getElementById('tanggal_d').innerText = tanggal
+                document.getElementById('keterangan_d').innerText = keterangan
+                document.getElementById('biaya_d').innerText = biaya
+                document.getElementById('status_d').innerHTML = badge(status)
             });
         });
     });
@@ -306,30 +323,37 @@
             <p id="modal-text" class="text-gray-500">
               <dl class="grid grid-cols-1 sm:grid-cols-2 sm:gap-y-2 gap-x-4">
                     <dt class="sm:py-1 text-sm text-gray-500 dark:text-neutral-500">
-                    Nama sopir
+                    Kendaraan
                     </dt>
-                    <dd id="nama_d" class="pb-3 sm:py-1 min-h-8 text-sm font-semibold text-gray-800 dark:text-neutral-200">
+                    <dd id="kendaraan_d" class="pb-3 sm:py-1 min-h-8 text-sm font-semibold text-gray-800 dark:text-neutral-200">
                     ...
                     </dd>
 
                     <dt class="sm:py-1 text-sm text-gray-500 dark:text-neutral-500">
-                    Jenis kelamin
+                    Tanggal servis
                     </dt>
-                    <dd id="jenis_d" class="pb-3 sm:py-1 min-h-8 text-sm text-gray-800 dark:text-neutral-200">
+                    <dd id="tanggal_d" class="pb-3 sm:py-1 min-h-8 text-sm text-gray-800 dark:text-neutral-200">
                     ...
                     </dd>
 
                     <dt class="sm:py-1 text-sm text-gray-500 dark:text-neutral-500">
-                    Alamat
+                    Keterangan
                     </dt>
-                    <dd id="alamat_d" class="pb-3 sm:py-1 min-h-8 text-sm text-gray-800 dark:text-neutral-200">
+                    <dd id="keterangan_d" class="pb-3 sm:py-1 min-h-8 text-sm text-gray-800 dark:text-neutral-200">
                     ...
                     </dd>
 
                     <dt class="sm:py-1 text-sm text-gray-500 dark:text-neutral-500">
-                    Telepon
+                    Total biaya
                     </dt>
-                    <dd id="telepon_d" class="pb-3 sm:py-1 min-h-8 text-sm text-gray-800 dark:text-neutral-200">
+                    <dd id="biaya_d" class="pb-3 sm:py-1 min-h-8 text-sm text-gray-800 dark:text-neutral-200">
+                    ...
+                    </dd>
+
+                    <dt class="sm:py-1 text-sm text-gray-500 dark:text-neutral-500">
+                    Status
+                    </dt>
+                    <dd id="status_d" class="pb-3 sm:py-1 min-h-8 text-sm text-gray-800 dark:text-neutral-200">
                     ...
                     </dd>
                 </dl>
@@ -348,7 +372,6 @@
 </div>
 <!-- End Detail Modal -->
 
-@if (Auth::user()->role == 'admin')                
 <!-- Confirm Delete Modal -->
 <div id="hs-delete-alert" class="hs-overlay hidden size-full fixed top-0 start-0 z-80 overflow-x-hidden overflow-y-auto" role="dialog" tabindex="-1" aria-labelledby="hs-delete-alert-label">
   <div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 scale-95 opacity-0 ease-in-out transition-all duration-200 sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-56px)] flex items-center">
@@ -397,4 +420,3 @@
   </div>
 </div>
 <!-- End Confirm Delete Modal -->
-@endif

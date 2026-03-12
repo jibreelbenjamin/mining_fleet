@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 class VehicleServiceController extends Controller
 {
     protected $model = VehicleService::class;
-    protected $route = 'dashboard.vehicle_service';
-    protected $view = 'app.vehicle_service';
+    protected $route = 'dashboard.vehicle-service';
+    protected $view = 'app.vehicle-service';
     protected $primary = 'id_vehicle_service';
     protected $echo = 'servis kendaraan';
-    protected $page = 'vehicle_service';
+    protected $page = 'vehicle-service';
 
     protected $rules = [
         'vehicle_id' => 'required|string|max:255',

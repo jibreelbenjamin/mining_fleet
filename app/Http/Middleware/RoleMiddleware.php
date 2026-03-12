@@ -15,7 +15,7 @@ class RoleMiddleware
         }
 
         if (!in_array(Auth::user()->role, $roles)) {
-            return redirect()->route('403');
+            return redirect()->route('dashboard')->with(['warningToast' => 'Tidak memiliki akses']);
         }
 
         return $next($request);
