@@ -81,6 +81,7 @@ class UserController extends Controller
     {
         $validate = $request->validate($this->rules, $this->messages);
         $this->model::create($validate);
+        logActivity('membuat '.$this->echo.' baru');
         return redirect()->route($this->route)->with(['successToast' => ucfirst($this->echo).' berhasil ditambahkan']);
     }
 
@@ -101,6 +102,7 @@ class UserController extends Controller
 
         if($data){
             return view($this->view.'.form-password', ['mode' => 'update'], compact('data'));
+            logActivity('mengedit password '.$this->echo);
         } else {
             return redirect()->route($this->route)->withErrors(['message' => ucfirst($this->echo).' tidak ditemukan']);
         }
@@ -148,6 +150,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $this->model::findOrFail($id)->delete();
+        logActivity('menghapus '.$this->echo);
         return redirect()->route($this->route)->with(['successToast' => ucfirst($this->echo).' berhasil dihapus']);
     }
 }

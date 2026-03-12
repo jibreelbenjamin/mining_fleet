@@ -29,11 +29,6 @@
         </div>
 
         <div class="flex flex-row items-center justify-end gap-1">
-            <button type="button" class="size-9.5 relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-neutral-700 focus:outline-hidden focus:bg-gray-100 dark:focus:bg-neutral-700 disabled:opacity-50 disabled:pointer-events-none">
-            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            <span class="sr-only">Activity</span>
-            </button>
-
             <!-- Account Dropdown -->
                 <div class="hs-dropdown inline-flex [--strategy:absolute] [--auto-close:inside] [--placement:bottom-right] relative text-start">
                 <button id="hs-dnad" type="button" class="p-0.5 inline-flex shrink-0 items-center gap-x-3 text-start text-gray-800 dark:text-neutral-200 rounded-full hover:bg-gray-100 dark:hover:bg-neutral-700 focus:outline-hidden focus:bg-gray-100 dark:focus:bg-neutral-700" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
@@ -220,7 +215,7 @@
                     </li>
                     @endif
                     <li>
-                        <a class="{{ $page == 'logs' ? $sActive : $sIdle }}" href="#">
+                        <a class="{{ $page == 'log' ? $sActive : $sIdle }}" href="{{ route('dashboard.log') }}">
                             Log Aktivitas
                         </a>
                     </li>

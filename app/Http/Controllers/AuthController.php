@@ -25,6 +25,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            logActivity('login ke aplikasi');
             return redirect()->route('dashboard');
         }
 
@@ -38,6 +39,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        logActivity('logout dari aplikasi');
 
         return redirect('/login');
     }

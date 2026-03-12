@@ -108,6 +108,7 @@ class ApprovalController extends Controller
         // Update status approve
         $approval->status = 2;
         $approval->save();
+        logActivity('menyetujui approval');
 
         $approval->booking->load('approvals');
         $approvals = $approval->booking->approvals;
@@ -152,6 +153,7 @@ class ApprovalController extends Controller
         // Update status reject
         $approval->status = 3;
         $approval->save();
+        logActivity('menolak approval');
 
         $approvals = $approval->booking->approvals;
 

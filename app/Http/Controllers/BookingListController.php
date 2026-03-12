@@ -102,6 +102,7 @@ class BookingListController extends Controller
             $data->delete();
             return redirect()->route($this->route)
                             ->with(['successToast' => ucfirst($this->echo).' berhasil dihapus']);
+            logActivity('menghapus '.$this->echo);
         } else {
             return redirect()->route($this->route)
                             ->withErrors(['message' => ucfirst($this->echo).' tidak dapat dihapus']);

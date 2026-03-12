@@ -13,7 +13,7 @@ class FuelLogController extends Controller
     protected $route = 'dashboard.fuel-log';
     protected $view = 'app.fuel-log';
     protected $primary = 'id_fuel_log';
-    protected $echo = 'bahan bakar';
+    protected $echo = 'konsumsi BBM';
     protected $page = 'fuel-log';
 
     protected $rules = [
@@ -117,6 +117,7 @@ class FuelLogController extends Controller
             $request['booking_id'] = $id_booking;
             $validate = $request->validate($this->rules, $this->messages);
             $this->model::create($validate);
+            logActivity('membuat '.$this->echo.' baru');
             return redirect()->back()->with(['successToast' => ucfirst($this->echo).' berhasil ditambahkan']);
 
         } else {
@@ -133,6 +134,7 @@ class FuelLogController extends Controller
                 return redirect()->route($this->route)->withErrors(['message' => 'Pesanan invalid']);
             }
             $this->model::findOrFail($id)->delete();
+            logActivity('menghapus '.$this->echo);
             return redirect()->back()->with(['successToast' => ucfirst($this->echo).' berhasil dihapus']);
 
         } else {

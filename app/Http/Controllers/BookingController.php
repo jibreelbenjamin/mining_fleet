@@ -150,6 +150,8 @@ class BookingController extends Controller
             'level' => 2,
             'status' => 1
         ]);
+
+        logActivity('membuat '.$this->echo.' baru');
         return redirect()->route($this->route)->with(['successToast' => ucfirst($this->echo).' berhasil dibuat']);
     }
 
@@ -186,6 +188,7 @@ class BookingController extends Controller
             $data->delete();
             return redirect()->route($this->route)
                             ->with(['successToast' => ucfirst($this->echo).' berhasil dihapus']);
+            logActivity('menghapus '.$this->echo);
         } else {
             return redirect()->route($this->route)
                             ->withErrors(['message' => ucfirst($this->echo).' tidak dapat dihapus']);

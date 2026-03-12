@@ -86,6 +86,7 @@ class VehicleServiceController extends Controller
     {
         $validate = $request->validate($this->rules, $this->messages);
         $this->model::create($validate);
+        logActivity('membuat '.$this->echo.' baru');
         return redirect()->route($this->route)->with(['successToast' => ucfirst($this->echo).' berhasil ditambahkan']);
     }
 
@@ -125,6 +126,7 @@ class VehicleServiceController extends Controller
     public function destroy($id)
     {
         $this->model::findOrFail($id)->delete();
+        logActivity('menghapus '.$this->echo);
         return redirect()->route($this->route)->with(['successToast' => ucfirst($this->echo).' berhasil dihapus']);
     }
 }
