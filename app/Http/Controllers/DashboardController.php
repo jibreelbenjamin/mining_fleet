@@ -2,63 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\BookingDailyChart;
+use App\Charts\BookingMonthlyChart;
+use App\Models\Booking;
+use App\Models\Vehicle;
+use App\Models\Driver;
+use App\Models\User;
+use App\Models\Log;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(BookingDailyChart $dailyChart, BookingMonthlyChart $monthlyChart)
     {
-        return view('app.dashboard');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Invoice $invoice)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Invoice $invoice)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Invoice $invoice)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Invoice $invoice)
-    {
-        //
+        $booking = Booking::all();
+        $vehicle = Vehicle::all();
+        $driver = Driver::all();
+        $user = User::all();
+        $log = Log::all();
+        return view('app.dashboard', [ 'dailyChart' => $dailyChart->build(), 'monthlyChart' => $monthlyChart->build() ], compact('booking', 'vehicle', 'driver', 'user', 'log'));
     }
 }
