@@ -11,10 +11,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('app.dashboard', [
-            'title' => 'Dashboard',
-            'page' => 'home'
-        ]);
+        return view('app.dashboard');
     }
 
     /**

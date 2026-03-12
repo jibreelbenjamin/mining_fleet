@@ -26,6 +26,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $casts = [
+        'password' => 'hashed',
+    ];
+
     public function bookings()
     {
         return $this->hasMany(Booking::class,'requested_by');

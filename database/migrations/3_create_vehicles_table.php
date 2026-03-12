@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('jenis_kendaraan');
             $table->string('plat_nomor');
             $table->tinyInteger('status')
-                ->comment('1=Available, 2=Booked, 3=Maintanance');
+                ->comment('1=Available, 2=Booked, 3=Maintanance, 4=Unavailable')
+                ->default(1);
         });
     }
 

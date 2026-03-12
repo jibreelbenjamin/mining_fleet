@@ -1,54 +1,54 @@
-<x-head>
+@php
+    $sIdle = 'w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-700 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800';
+    $sActive = 'w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg bg-gray-200 dark:hover:bg-neutral-700 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800'
+@endphp
+<x-head :page='$page' :title='$title'>
     <!-- ========== HEADER ========== -->
-    <header class="fixed top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-48 lg:z-61 w-full bg-gray-100 dark:bg-neutral-900 text-sm py-2.5">
-    <nav class="px-4 sm:px-5.5 flex basis-full items-center w-full mx-auto">
-        <div class="w-full flex items-center gap-x-1.5">
-        <ul class="flex items-center gap-1.5">
-            <li class="inline-flex items-center gap-1 relative pe-1.5 last:pe-0 last:after:hidden after:absolute after:top-1/2 after:end-0 after:inline-block after:w-px after:h-3.5 after:bg-gray-300 dark:after:bg-neutral-700 after:rounded-full after:-translate-y-1/2 after:rotate-12">
-            <a class="shrink-0 inline-flex justify-center items-center bg-stone-800 dark:bg-white size-8 rounded-md text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80" href="@@href" aria-label="Preline">
-                <svg class="stroke-white dark:stroke-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-stone-icon lucide-stone"><path d="M11.264 2.205A4 4 0 0 0 6.42 4.211l-4 8a4 4 0 0 0 1.359 5.117l6 4a4 4 0 0 0 4.438 0l6-4a4 4 0 0 0 1.576-4.592l-2-6a4 4 0 0 0-2.53-2.53z"/><path d="M11.99 22 14 12l7.822 3.184"/><path d="M14 12 8.47 2.302"/></svg>
-            </a>
+    <header class="sticky top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-48 w-full bg-white dark:bg-neutral-800 border-b border-gray-200 dark:border-neutral-700 text-sm py-2.5 lg:ps-65">
+    <nav class="px-4 sm:px-6 flex basis-full items-center w-full mx-auto">
+        <div class="me-5 lg:me-0 lg:hidden">
+        <!-- Logo -->
+        <a class="flex-none rounded-md text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80" href="#" aria-label="Preline">
+            <svg class="w-28 h-auto" width="116" height="32" viewBox="0 0 116 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M33.5696 30.8182V11.3182H37.4474V13.7003H37.6229C37.7952 13.3187 38.0445 12.9309 38.3707 12.5369C38.7031 12.1368 39.134 11.8045 39.6634 11.5398C40.1989 11.2689 40.8636 11.1335 41.6577 11.1335C42.6918 11.1335 43.6458 11.4044 44.5199 11.946C45.3939 12.4815 46.0926 13.291 46.6158 14.3743C47.139 15.4515 47.4006 16.8026 47.4006 18.4276C47.4006 20.0095 47.1451 21.3452 46.6342 22.4347C46.1295 23.518 45.4401 24.3397 44.5661 24.8999C43.6982 25.4538 42.7256 25.7308 41.6484 25.7308C40.8852 25.7308 40.2358 25.6046 39.7003 25.3523C39.1709 25.0999 38.737 24.7829 38.3984 24.4013C38.0599 24.0135 37.8014 23.6226 37.6229 23.2287H37.5028V30.8182H33.5696ZM37.4197 18.4091C37.4197 19.2524 37.5367 19.9879 37.7706 20.6158C38.0045 21.2436 38.343 21.733 38.7862 22.0838C39.2294 22.4285 39.768 22.6009 40.402 22.6009C41.0421 22.6009 41.5838 22.4254 42.027 22.0746C42.4702 21.7176 42.8056 21.2251 43.0334 20.5973C43.2673 19.9633 43.3842 19.2339 43.3842 18.4091C43.3842 17.5904 43.2704 16.8703 43.0426 16.2486C42.8149 15.6269 42.4794 15.1406 42.0362 14.7898C41.593 14.4389 41.0483 14.2635 40.402 14.2635C39.7618 14.2635 39.2202 14.4328 38.777 14.7713C38.34 15.1098 38.0045 15.59 37.7706 16.2116C37.5367 16.8333 37.4197 17.5658 37.4197 18.4091ZM49.2427 25.5V11.3182H53.0559V13.7926H53.2037C53.4622 12.9124 53.8961 12.2476 54.5055 11.7983C55.1149 11.3428 55.8166 11.1151 56.6106 11.1151C56.8076 11.1151 57.02 11.1274 57.2477 11.152C57.4754 11.1766 57.6755 11.2105 57.8478 11.2536V14.7436C57.6632 14.6882 57.4077 14.639 57.0815 14.5959C56.7553 14.5528 56.4567 14.5312 56.1859 14.5312C55.6073 14.5312 55.0903 14.6574 54.6348 14.9098C54.1854 15.156 53.8284 15.5007 53.5638 15.9439C53.3052 16.3871 53.176 16.898 53.176 17.4766V25.5H49.2427ZM64.9043 25.777C63.4455 25.777 62.1898 25.4815 61.1373 24.8906C60.0909 24.2936 59.2845 23.4503 58.7182 22.3608C58.1519 21.2652 57.8688 19.9695 57.8688 18.4737C57.8688 17.0149 58.1519 15.7346 58.7182 14.6328C59.2845 13.531 60.0816 12.6723 61.1096 12.0568C62.1437 11.4413 63.3563 11.1335 64.7474 11.1335C65.683 11.1335 66.5539 11.2843 67.3603 11.5859C68.1728 11.8814 68.8806 12.3277 69.4839 12.9247C70.0932 13.5218 70.5672 14.2727 70.9057 15.1776C71.2443 16.0762 71.4135 17.1288 71.4135 18.3352V19.4155H59.4384V16.978H67.7111C67.7111 16.4117 67.588 15.91 67.3418 15.473C67.0956 15.036 66.754 14.6944 66.317 14.4482C65.8861 14.1958 65.3844 14.0696 64.812 14.0696C64.2149 14.0696 63.6856 14.2081 63.2239 14.4851C62.7684 14.7559 62.4114 15.1222 62.1529 15.5838C61.8944 16.0393 61.762 16.5471 61.7559 17.1072V19.4247C61.7559 20.1264 61.8851 20.7327 62.1437 21.2436C62.4083 21.7545 62.7807 22.1484 63.2608 22.4254C63.741 22.7024 64.3103 22.8409 64.9689 22.8409C65.406 22.8409 65.8061 22.7794 66.1692 22.6562C66.5324 22.5331 66.8432 22.3485 67.1018 22.1023C67.3603 21.8561 67.5572 21.5545 67.6927 21.1974L71.3304 21.4375C71.1458 22.3116 70.7672 23.0748 70.1948 23.7273C69.6285 24.3736 68.896 24.8783 67.9974 25.2415C67.1048 25.5985 66.0738 25.777 64.9043 25.777ZM77.1335 6.59091V25.5H73.2003V6.59091H77.1335ZM79.5043 25.5V11.3182H83.4375V25.5H79.5043ZM81.4801 9.49006C80.8954 9.49006 80.3937 9.29616 79.9752 8.90838C79.5628 8.51444 79.3566 8.04356 79.3566 7.49574C79.3566 6.95407 79.5628 6.48935 79.9752 6.10156C80.3937 5.70762 80.8954 5.51065 81.4801 5.51065C82.0649 5.51065 82.5635 5.70762 82.9759 6.10156C83.3944 6.48935 83.6037 6.95407 83.6037 7.49574C83.6037 8.04356 83.3944 8.51444 82.9759 8.90838C82.5635 9.29616 82.0649 9.49006 81.4801 9.49006ZM89.7415 17.3011V25.5H85.8083V11.3182H89.5569V13.8203H89.723C90.037 12.9955 90.5632 12.343 91.3019 11.8629C92.0405 11.3767 92.9361 11.1335 93.9887 11.1335C94.9735 11.1335 95.8322 11.349 96.5647 11.7798C97.2971 12.2107 97.8665 12.8262 98.2728 13.6264C98.679 14.4205 98.8821 15.3684 98.8821 16.4702V25.5H94.9489V17.1719C94.9551 16.304 94.7335 15.6269 94.2841 15.1406C93.8348 14.6482 93.2162 14.402 92.4283 14.402C91.8989 14.402 91.4311 14.5159 91.0249 14.7436C90.6248 14.9714 90.3109 15.3037 90.0831 15.7408C89.8615 16.1716 89.7477 16.6918 89.7415 17.3011ZM107.665 25.777C106.206 25.777 104.951 25.4815 103.898 24.8906C102.852 24.2936 102.045 23.4503 101.479 22.3608C100.913 21.2652 100.63 19.9695 100.63 18.4737C100.63 17.0149 100.913 15.7346 101.479 14.6328C102.045 13.531 102.842 12.6723 103.87 12.0568C104.905 11.4413 106.117 11.1335 107.508 11.1335C108.444 11.1335 109.315 11.2843 110.121 11.5859C110.934 11.8814 111.641 12.3277 112.245 12.9247C112.854 13.5218 113.328 14.2727 113.667 15.1776C114.005 16.0762 114.174 17.1288 114.174 18.3352V19.4155H102.199V16.978H110.472C110.472 16.4117 110.349 15.91 110.103 15.473C109.856 15.036 109.515 14.6944 109.078 14.4482C108.647 14.1958 108.145 14.0696 107.573 14.0696C106.976 14.0696 106.446 14.2081 105.985 14.4851C105.529 14.7559 105.172 15.1222 104.914 15.5838C104.655 16.0393 104.523 16.5471 104.517 17.1072V19.4247C104.517 20.1264 104.646 20.7327 104.905 21.2436C105.169 21.7545 105.542 22.1484 106.022 22.4254C106.502 22.7024 107.071 22.8409 107.73 22.8409C108.167 22.8409 108.567 22.7794 108.93 22.6562C109.293 22.5331 109.604 22.3485 109.863 22.1023C110.121 21.8561 110.318 21.5545 110.454 21.1974L114.091 21.4375C113.907 22.3116 113.528 23.0748 112.956 23.7273C112.389 24.3736 111.657 24.8783 110.758 25.2415C109.866 25.5985 108.835 25.777 107.665 25.777Z" class="fill-blue-600 dark:fill-blue-500" fill="currentColor"/>
+            <path d="M1 29.5V16.5C1 9.87258 6.37258 4.5 13 4.5C19.6274 4.5 25 9.87258 25 16.5C25 23.1274 19.6274 28.5 13 28.5H12" class="stroke-blue-600 dark:stroke-blue-500" stroke="currentColor" stroke-width="2"/>
+            <path d="M5 29.5V16.66C5 12.1534 8.58172 8.5 13 8.5C17.4183 8.5 21 12.1534 21 16.66C21 21.1666 17.4183 24.82 13 24.82H12" class="stroke-blue-600 dark:stroke-blue-500" stroke="currentColor" stroke-width="2"/>
+            <circle cx="13" cy="16.5214" r="5" class="fill-blue-600 dark:fill-blue-500" fill="currentColor"/>
+            </svg>
+        </a>
+        <!-- End Logo -->
 
-            <div class="hidden sm:block">
+        <div class="lg:hidden ms-1">
 
-            </div>
+        </div>
+        </div>
 
-            <!-- Sidebar Toggle -->
-            <button type="button" class="p-1.5 size-7.5 inline-flex items-center gap-x-1 text-xs rounded-md border border-transparent text-gray-800 dark:text-neutral-200 hover:bg-gray-200 dark:hover:bg-neutral-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-600" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-pro-sidebar" data-hs-overlay="#hs-pro-sidebar">
-                <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m10 15-3-3 3-3"/></svg>
-                <span class="sr-only">Sidebar Toggle</span>
-            </button>
-            <!-- End Sidebar Toggle -->
-            </li>
-        </ul>
+        <div class="w-full flex items-center justify-end ms-auto lg:justify-between gap-x-1 md:gap-x-3">
 
-        <ul class="flex flex-row items-center gap-x-3 ms-auto">
-            <li class="hidden lg:inline-flex items-center gap-1.5 relative pe-3 last:pe-0 last:after:hidden after:absolute after:top-1/2 after:end-0 after:inline-block after:w-px after:h-3.5 after:bg-gray-300 dark:after:bg-neutral-700 after:rounded-full after:-translate-y-1/2 after:rotate-12">
-            <button type="button" class="flex items-center gap-x-1.5 py-2 px-2.5 font-medium text-xs bg-gray-200 dark:bg-neutral-800 text-gray-800 dark:text-neutral-200 rounded-lg hover:text-blue-700 dark:hover:text-blue-600 focus:outline-hidden focus:text-blue-700 dark:focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none">
-                <svg class="shrink-0 size-4 text-blue-600 dark:text-blue-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.73 1.73 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.73 1.73 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.73 1.73 0 0 0 3.407 2.31zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/></svg>
-                Ask AI
-            </button>
+        <div class="text-sm text-gray-500 dark:text-neutral-500 hidden lg:block">
+            {{ $title }}
+        </div>
 
-            <a class="flex items-center gap-x-1.5 py-1.5 px-2 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800" href="#">
-                Docs
-            </a>
-
-            <a class="flex items-center gap-x-1.5 py-1.5 px-2 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800" href="#">
-                API
-            </a>
-            </li>
-
-            <li class="inline-flex items-center gap-1.5 relative pe-3 last:pe-0 last:after:hidden after:absolute after:top-1/2 after:end-0 after:inline-block after:w-px after:h-3.5 after:bg-gray-300 dark:after:bg-neutral-700 after:rounded-full after:-translate-y-1/2 after:rotate-12">
-            <button type="button" class="relative hidden lg:flex justify-center items-center gap-x-1.5 size-8 text-sm text-gray-800 dark:text-neutral-200 rounded-full hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800">
-                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
-                <span class="sr-only">Knowledge Base</span>
+        <div class="flex flex-row items-center justify-end gap-1">
+            <button type="button" class="md:hidden size-9.5 relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-neutral-700 focus:outline-hidden focus:bg-gray-100 dark:focus:bg-neutral-700 disabled:opacity-50 disabled:pointer-events-none">
+            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <span class="sr-only">Search</span>
             </button>
 
-            <div class="h-8">
-                <!-- Account Dropdown -->
+            <button type="button" class="size-9.5 relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-neutral-700 focus:outline-hidden focus:bg-gray-100 dark:focus:bg-neutral-700 disabled:opacity-50 disabled:pointer-events-none">
+            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            <span class="sr-only">Notifications</span>
+            </button>
+
+            <button type="button" class="size-9.5 relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-neutral-700 focus:outline-hidden focus:bg-gray-100 dark:focus:bg-neutral-700 disabled:opacity-50 disabled:pointer-events-none">
+            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span class="sr-only">Activity</span>
+            </button>
+
+            <!-- Account Dropdown -->
                 <div class="hs-dropdown inline-flex [--strategy:absolute] [--auto-close:inside] [--placement:bottom-right] relative text-start">
                 <button id="hs-dnad" type="button" class="p-0.5 inline-flex shrink-0 items-center gap-x-3 text-start text-gray-800 dark:text-neutral-200 rounded-full hover:bg-gray-100 dark:hover:bg-neutral-700 focus:outline-hidden focus:bg-gray-100 dark:focus:bg-neutral-700" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                    <img class="shrink-0 size-7 rounded-full" src="https://images.unsplash.com/photo-1659482633369-9fe69af50bfb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=3&w=320&h=320&q=80" alt="Avatar">
+                    <img class="shrink-0 size-7 rounded-full" src="{{ asset('images/me.jpg') }}" alt="Avatar">
                 </button>
 
                 <!-- Account Dropdown -->
@@ -61,27 +61,6 @@
                         {{ Auth::user()->email }}
                     </p>
                     </div>
-                    <div class="px-4 py-2 border-t border-gray-200 dark:border-neutral-800">
-                    <!-- Switch/Toggle -->
-                    <div class="flex flex-wrap justify-between items-center gap-2">
-                        <span class="flex-1 cursor-pointer text-sm text-gray-800 dark:text-neutral-200">Theme</span>
-                        <div class="p-0.5 inline-flex cursor-pointer bg-gray-100 dark:bg-neutral-700 rounded-full">
-                        <button type="button" class="size-7 flex justify-center items-center bg-white dark:bg-neutral-800 shadow-sm text-gray-800 dark:text-white rounded-full hs-auto-mode-active:bg-transparent hs-auto-mode-active:shadow-none hs-dark-mode-active:bg-transparent hs-dark-mode-active:shadow-none" data-hs-theme-click-value="default">
-                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v1"/><path d="M12 20v1"/><path d="M3 12h1"/><path d="M20 12h1"/><path d="m18.364 5.636-.707.707"/><path d="m6.343 17.657-.707.707"/><path d="m5.636 5.636.707.707"/><path d="m17.657 17.657.707.707"/></svg>
-                            <span class="sr-only">Default (Light)</span>
-                        </button>
-                        <button type="button" class="size-7 flex justify-center items-center text-gray-800 dark:text-white rounded-full hs-dark-mode-active:bg-gray-800 dark:hs-dark-mode-active:bg-neutral-100 hs-dark-mode-active:text-white dark:hs-dark-mode-active:text-neutral-800 hs-dark-mode-active:shadow-sm" data-hs-theme-click-value="dark">
-                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-                            <span class="sr-only">Dark</span>
-                        </button>
-                        <button type="button" class="size-7 flex justify-center items-center text-gray-800 dark:text-white rounded-full hs-auto-light-mode-active:bg-white dark:hs-auto-light-mode-active:bg-neutral-800 hs-auto-mode-active:shadow-sm" data-hs-theme-click-value="auto">
-                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
-                            <span class="sr-only">Auto (System)</span>
-                        </button>
-                        </div>
-                    </div>
-                    <!-- End Switch/Toggle -->
-                    </div>
                     <div class="p-1 border-t border-gray-200 dark:border-neutral-800">
                     <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-neutral-800 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-100 dark:focus:bg-neutral-800" href="{{ route('logout') }}">
                         <svg class="shrink-0 mt-0.5 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
@@ -92,178 +71,172 @@
                 <!-- End Account Dropdown -->
                 </div>
                 <!-- End Account Dropdown -->
-            </div>
-            </li>
-        </ul>
+        </div>
         </div>
     </nav>
     </header>
     <!-- ========== END HEADER ========== -->
 
-    <!-- ========== MAIN SIDEBAR ========== -->
+    <!-- ========== MAIN CONTENT ========== -->
+    <div class="-mt-px">
+    <!-- Breadcrumb -->
+    <div class="sticky top-0 inset-x-0 z-20 bg-white dark:bg-neutral-800 border-y border-gray-200 dark:border-neutral-700 px-4 sm:px-6 lg:px-8 lg:hidden">
+        <div class="flex items-center py-2">
+        <!-- Navigation Toggle -->
+        <button type="button" class="size-8 flex justify-center items-center gap-x-2 bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 text-gray-800 dark:text-white hover:text-gray-800-hover dark:hover:text-white-hover rounded-lg focus:outline-hidden focus:text-gray-800-focus dark:focus:text-white-focus disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-application-sidebar" aria-label="Toggle navigation" data-hs-overlay="#hs-application-sidebar">
+            <span class="sr-only">Toggle Navigation</span>
+            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m8 9 3 3-3 3"/></svg>
+        </button>
+        <!-- End Navigation Toggle -->
+
+        <!-- Breadcrumb -->
+        <ol class="ms-3 flex items-center whitespace-nowrap">
+            <li class="flex items-center text-sm text-gray-800 dark:text-neutral-200">
+            Application Layout
+            <svg class="shrink-0 mx-3 overflow-visible size-2.5 text-gray-400 dark:text-neutral-500" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 1L10.6869 7.16086C10.8637 7.35239 10.8637 7.64761 10.6869 7.83914L5 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            </li>
+            <li class="text-sm font-semibold text-gray-800 dark:text-neutral-200 truncate" aria-current="page">
+            Dashboard
+            </li>
+        </ol>
+        <!-- End Breadcrumb -->
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
+    </div>
+
     <!-- Sidebar -->
-    <div id="hs-pro-sidebar" class="hs-overlay [--body-scroll:true] lg:[--overlay-backdrop:false] [--is-layout-affect:true] [--opened:lg] [--auto-close:lg] hs-overlay-open:translate-x-0 lg:hs-overlay-layout-open:translate-x-0 -translate-x-full transition-all duration-300 transform w-60 hidden fixed inset-y-0 z-60 start-0 bg-gray-100 dark:bg-neutral-900 lg:block lg:-translate-x-full lg:end-auto lg:bottom-0" role="dialog" tabindex="-1" aria-label="Sidebar">
-    <div class="lg:pt-13 relative flex flex-col h-full max-h-full">
-        <!-- Body -->
-        <nav class="p-3 size-full flex flex-col overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
-        <div class="lg:hidden flex items-center justify-between">
-            <button type="button" class="flex items-center gap-x-1.5 py-2 px-2.5 font-medium text-xs bg-gray-900 dark:bg-white text-white dark:text-neutral-800 rounded-lg focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
-            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.73 1.73 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.73 1.73 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.73 1.73 0 0 0 3.407 2.31zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/></svg>
-            {{ env("APP_NAME") }}
-            </button>
+    <div id="hs-application-sidebar" class="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform w-65 h-full hidden fixed inset-y-0 start-0 z-60 bg-white dark:bg-neutral-800 border-e border-gray-200 dark:border-neutral-700 lg:block lg:translate-x-0 lg:end-auto lg:bottom-0" role="dialog" tabindex="-1" aria-label="Sidebar">
+    <div class="relative flex flex-col h-full max-h-full">
+        <div class="px-6 pt-4 flex items-center">
+        <!-- Logo -->
+        <a class="flex items-center gap-x-3 rounded-md text-xl font-semibold" href="{{ route('dashboard') }}" aria-label="{{ env("APP_NAME") }}">
+            <svg class="w-10 h-auto dark:stroke-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-stone-icon lucide-stone"><path d="M11.264 2.205A4 4 0 0 0 6.42 4.211l-4 8a4 4 0 0 0 1.359 5.117l6 4a4 4 0 0 0 4.438 0l6-4a4 4 0 0 0 1.576-4.592l-2-6a4 4 0 0 0-2.53-2.53z"/><path d="M11.99 22 14 12l7.822 3.184"/><path d="M14 12 8.47 2.302"/></svg>
+            <p class="flex flex-col leading-tight text-gray-800 dark:text-white">
+                {{ env('APP_NAME') }}
+                <span class="text-[10px] text-gray-500 dark:text-neutral-500">Aplikasi monitoring</span>
+            </p>
+        </a>
+        <!-- End Logo -->
 
-            <!-- Sidebar Toggle -->
-            <button type="button" class="p-1.5 size-7.5 inline-flex items-center gap-x-1 text-xs rounded-md text-gray-500 dark:text-neutral-400 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-pro-sidebar" data-hs-overlay="#hs-pro-sidebar">
-            <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-            <span class="sr-only">Sidebar Toggle</span>
-            </button>
-            <!-- End Sidebar Toggle -->
+        <div class="hidden lg:block ms-2">
+
+        </div>
         </div>
 
-        <span class="lg:block hidden ps-2.5 mb-2 font-medium text-sm text-gray-500 dark:text-neutral-400">
-        {{ env("APP_NAME") }}
-        </span>
+        <!-- Content -->
+        <div class="h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
+        <nav class="hs-accordion-group p-3 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+            <ul class="mt-5 flex flex-col space-y-1">
+                <div class="pt-3 mt-3 flex flex-col border-t border-gray-200 dark:border-neutral-800 first:border-t-0 first:pt-0 first:mt-0">
+                    <span class="block ps-2.5 mb-2 font-medium text-xs uppercase text-gray-500 dark:text-neutral-400">
+                    Home
+                    </span>
 
-        <div class="pt-3 mt-3 flex flex-col border-t border-gray-200 dark:border-neutral-800 first:border-t-0 first:pt-0 first:mt-0">
-            <span class="block ps-2.5 mb-2 font-medium text-xs uppercase text-gray-500 dark:text-neutral-400">
-            Home
-            </span>
+                    <!-- List -->
+                    <ul class="flex flex-col gap-y-1">
+                    <li>
+                        <a class="{{ $page == 'dashboard' ? $sActive : $sIdle }}"  href="{{ route('dashboard') }}">
+                            Dashboard
+                        </a>
+                    </li>
+                    </ul>
+                    <!-- End List -->
+                </div>
 
-            <!-- List -->
-            <ul class="flex flex-col gap-y-1">
-            <li>
-                <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800"  href="#">
-                Dashboard
-                </a>
-            </li>
+                <div class="pt-3 mt-3 flex flex-col border-t border-gray-200 dark:border-neutral-800 first:border-t-0 first:pt-0 first:mt-0">
+                    <span class="block ps-2.5 mb-2 font-medium text-xs uppercase text-gray-500 dark:text-neutral-400">
+                    Booking
+                    </span>
+
+                    <!-- List -->
+                    <ul class="flex flex-col gap-y-1">
+                    <li>
+                        <a class="{{ $page == 'book' ? $sActive : $sIdle }}"  href="#">
+                            Buat pemesanan
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ $page == 'bookings' ? $sActive : $sIdle }}"  href="#">
+                            Riwayat pemasanan
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ $page == 'fuel' ? $sActive : $sIdle }}"  href="#">
+                            Konsumsi BBM
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ $page == 'approve' ? $sActive : $sIdle }}"  href="#">
+                            Pesetujuan
+                        </a>
+                    </li>
+                    </ul>
+                    <!-- End List -->
+                </div>
+
+                <div class="pt-3 mt-3 flex flex-col border-t border-gray-200 dark:border-neutral-800 first:border-t-0 first:pt-0 first:mt-0">
+                    <span class="block ps-2.5 mb-2 font-medium text-xs uppercase text-gray-500 dark:text-neutral-400">
+                    Resource
+                    </span>
+
+                    <!-- List -->
+                    <ul class="flex flex-col gap-y-1">
+                    <li>
+                        <a class="{{ $page == 'vehicle' ? $sActive : $sIdle }}"  href="{{ route('dashboard.vehicle') }}">
+                            Kendaraan
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ $page == 'driver' ? $sActive : $sIdle }}"  href="{{ route('dashboard.driver') }}">
+                            Sopir
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ $page == 'vehicle_service' ? $sActive : $sIdle }}"  href="{{ route('dashboard.vehicle_service') }}">
+                            Jadwal servis
+                        </a>
+                    </li>
+                    </ul>
+                    <!-- End List -->
+                </div>
+
+                <div class="pt-3 mt-3 flex flex-col border-t border-gray-200 dark:border-neutral-800 first:border-t-0 first:pt-0 first:mt-0">
+                    <span class="block ps-2.5 mb-2 font-medium text-xs uppercase text-gray-500 dark:text-neutral-400">
+                    Admin
+                    </span>
+
+                    <!-- List -->
+                    <ul class="flex flex-col gap-y-1">
+                    <li>
+                        <a class="{{ $page == 'user' ? $sActive : $sIdle }}" href="{{ route('dashboard.user') }}">
+                            Manajemen pengguna
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ $page == 'logs' ? $sActive : $sIdle }}" href="#">
+                            Log Aktivitas
+                        </a>
+                    </li>
+                    </ul>
+                    <!-- End List -->
+                </div>
             </ul>
-            <!-- End List -->
-        </div>
-
-        <div class="pt-3 mt-3 flex flex-col border-t border-gray-200 dark:border-neutral-800 first:border-t-0 first:pt-0 first:mt-0">
-            <span class="block ps-2.5 mb-2 font-medium text-xs uppercase text-gray-500 dark:text-neutral-400">
-            Booking
-            </span>
-
-            <!-- List -->
-            <ul class="flex flex-col gap-y-1">
-            <li>
-                <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800"  href="#">
-                Buat pemesanan
-                </a>
-            </li>
-            <li>
-                <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800"  href="#">
-                Riwayat pemasanan
-                </a>
-            </li>
-            <li>
-                <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800"  href="#">
-                Konsumsi BBM
-                </a>
-            </li>
-            <li>
-                <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800"  href="#">
-                Pesetujuan
-                </a>
-            </li>
-            </ul>
-            <!-- End List -->
-        </div>
-
-        <div class="pt-3 mt-3 flex flex-col border-t border-gray-200 dark:border-neutral-800 first:border-t-0 first:pt-0 first:mt-0">
-            <span class="block ps-2.5 mb-2 font-medium text-xs uppercase text-gray-500 dark:text-neutral-400">
-            Resource
-            </span>
-
-            <!-- List -->
-            <ul class="flex flex-col gap-y-1">
-            <li>
-                <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800"  href="#">
-                Kendaraan
-                </a>
-            </li>
-            <li>
-                <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800"  href="#">
-                    Sopir
-                </a>
-            </li>
-            <li>
-                <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800"  href="#">
-                Jadwal servis
-                </a>
-            </li>
-            </ul>
-            <!-- End List -->
-        </div>
-
-        <div class="pt-3 mt-3 flex flex-col border-t border-gray-200 dark:border-neutral-800 first:border-t-0 first:pt-0 first:mt-0">
-            <span class="block ps-2.5 mb-2 font-medium text-xs uppercase text-gray-500 dark:text-neutral-400">
-            Admin
-            </span>
-
-            <!-- List -->
-            <ul class="flex flex-col gap-y-1">
-            <li>
-                <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800" href="#">
-                Manajemen pengguna
-                </a>
-            </li>
-            <li>
-                <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800" href="#">
-                Log Aktivitas
-                </a>
-            </li>
-            </ul>
-            <!-- End List -->
-        </div>
         </nav>
-        <!-- End Body -->
-
-        <!-- Footer -->
-        <footer class="mt-auto p-3 flex flex-col">
-        <!-- List -->
-        <ul class="flex flex-col gap-y-1">
-            <li>
-            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800" href="#">
-                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-                What's new?
-            </a>
-            </li>
-            <li>
-            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800" href="#">
-                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                Help & support
-            </a>
-            </li>
-            <li class="lg:hidden">
-            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 dark:text-neutral-200 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-hidden focus:bg-gray-200 dark:focus:bg-neutral-800" href="#">
-                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
-                Knowledge Base
-            </a>
-            </li>
-        </ul>
-        <!-- End List -->
-        </footer>
-        <!-- End Footer -->
+        </div>
+        <!-- End Content -->
     </div>
     </div>
     <!-- End Sidebar -->
-    <!-- ========== END MAIN SIDEBAR ========== -->
 
-    <!-- ========== MAIN CONTENT ========== -->
-    <main class="lg:hs-overlay-layout-open:ps-60 bg-white dark:bg-neutral-800 transition-all duration-300 lg:fixed lg:inset-0 pt-16 pr-3 pb-3">
-    <div class="ml-3 h-[calc(100dvh-62px)] lg:h-full overflow-hidden flex flex-col bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 shadow-xs rounded-lg">
-        <!-- Body -->
-        <div class="flex-1 flex flex-col overflow-y-auto [&::-webkit-scrollbar]:w-0">
-        <div class="flex-1 flex flex-col lg:flex-row">
-            <div class="flex-1 min-w-0 flex flex-col border-e border-gray-200 dark:border-neutral-700">
-                {{ $slot }}
-            </div>
-        </div>
-        </div>
-        <!-- End Body -->
+    <!-- Content -->
+    <div class="w-full lg:ps-64">
+    <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
+        {{ $slot }}
     </div>
-    </main>
+    </div>
+    <!-- End Content -->
     <!-- ========== END MAIN CONTENT ========== -->
 </x-head>

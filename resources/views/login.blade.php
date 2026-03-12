@@ -1,4 +1,7 @@
-<x-head>
+@php
+    $title  = 'Welcome'
+@endphp
+<x-head :title ='$title '>
     <div class="flex items-center justify-center min-h-screen">
         <div class="w-md mt-7 bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-xl shadow-2xs">
           <div class="p-4 sm:p-7">
@@ -49,19 +52,6 @@
                     </div>
                     </div>
                     <!-- End Form Group -->
-        
-                  {{-- <!-- Checkbox -->
-                  <div class="flex items-center">
-                    <div class="flex">
-                      <input id="checkbox" name="checkbox" type="checkbox" class="shrink-0 size-4 bg-transparent border-gray-300 dark:border-neutral-600 rounded-sm shadow-2xs text-blue-600 dark:text-blue-500 focus:ring-0 focus:ring-offset-0 checked:bg-blue-600 dark:checked:bg-blue-500 checked:border-blue-600 dark:checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none">
-                    </div>
-                    <div class="ms-3">
-                      <label for="checkbox" class="text-sm text-gray-800 dark:text-neutral-200">
-                        Remember me
-                      </label>
-                    </div>
-                  </div>
-                  <!-- End Checkbox --> --}}
         
                   <button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg bg-blue-600 dark:bg-blue-500 border border-transparent text-white hover:bg-blue-700 dark:hover:bg-blue-600 focus:outline-hidden focus:bg-blue-700 dark:focus:bg-blue-600 disabled:opacity-50 disabled:pointer-events-none">Masuk</button>
                 </div>

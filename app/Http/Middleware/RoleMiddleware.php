@@ -11,7 +11,7 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, ...$roles)
     {
         if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu!');
+            return redirect()->route('login')->with(['warningToast' => 'Silahkan login terlebih dahulu']);
         }
 
         if (!in_array(Auth::user()->role, $roles)) {

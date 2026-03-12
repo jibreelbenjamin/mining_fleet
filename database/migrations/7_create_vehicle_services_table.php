@@ -19,9 +19,13 @@ return new class extends Migration
 
             $table->dateTime('service_date');
 
-            $table->text('keterangan')->nullable();
+            $table->text('keterangan');
 
             $table->decimal('cost', 12,2);
+
+            $table->tinyInteger('status')
+                ->comment('1=Prepare, 2=Ongoing, 3=Complete')
+                ->default(1);
 
             $table->timestamp('created_at')->nullable();
         });
