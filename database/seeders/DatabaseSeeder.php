@@ -16,65 +16,108 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // ========================
+        // =========================
         // Variabel jumlah data
-        // ========================
-        $jumlahUsers = 50;
-        $jumlahDrivers = 200;
-        $jumlahVehicles = 500;
-        $jumlahBookings = 5000;
-        $jumlahApprovalsPerBooking = 2; // supervisor + manager
-        $jumlahFuelLogsPerBooking = 4;
-        $jumlahVehicleServices = 70;
+        // =========================
+        $users = 50;
+        $drivers = 500;
+        $vehicles = 1000;
+        $bookings = 7500;
+        $fuelLogsPerBooking = 7;
+        $vehicleServices = 25;
 
-        // ========================
-        // Users
-        // ========================
-        User::factory($jumlahUsers)->create();
+        // =========================
+        // Master Data
+        // =========================
+        User::factory($users)->create();
+        Driver::factory($drivers)->create();
+        Vehicle::factory($vehicles)->create();
 
-        // ========================
-        // Drivers
-        // ========================
-        Driver::factory($jumlahDrivers)->create();
+        // =========================
+        // Booking + Approval Logic
+        // =========================
+        for ($i = 0; $i < $bookings; $i++) {
 
-        // ========================
-        // Vehicles
-        // ========================
-        Vehicle::factory($jumlahVehicles)->create();
+            $booking = Booking::factory()->create([
+                'status' => 1 // default pending
+            ]);
 
-        // ========================
-        // Bookings
-        // ========================
-        $bookings = Booking::factory($jumlahBookings)->create();
+            // =====================
+            // Level 1 Approval
+            // =====================
+            $level1Status = collect([1,2,3])->random();
 
-        // ========================
-        // Approvals
-        // ========================
-        foreach ($bookings as $booking) {
-            for ($level = 1; $level <= $jumlahApprovalsPerBooking; $level++) {
-                Approval::factory()->create([
-                    'booking_id' => $booking->id_booking,
-                    'level' => $level,
-                    'approver' => User::inRandomOrder()->first()->id_user,
-                ]);
+            Approval::create([
+                'booking_id' => $booking->id_booking,
+                'approver' => User::inRandomOrder()->first()->id_user,
+                'level' => 1,
+                'status' => $level1Status
+            ]);
+
+            // =====================
+            // Level 2 Logic
+            // =====================
+            if ($level1Status == 1) {
+
+                $level2Status = 1;
+                $bookingStatus = 1;
+
+            } elseif ($level1Status == 3) {
+
+                $level2Status = 3;
+                $bookingStatus = 3;
+
+            } else {
+
+                $level2Status = collect([1,2,3])->random();
+
+                if ($level2Status == 2) {
+
+                    // jika semua approve
+                    $bookingStatus = collect([2,4])->random();
+                    // 2 = approved
+                    // 4 = completed
+
+                } elseif ($level2Status == 3) {
+
+                    $bookingStatus = 3;
+
+                } else {
+
+                    $bookingStatus = 1;
+
+                }
+            }
+
+            Approval::create([
+                'booking_id' => $booking->id_booking,
+                'approver' => User::inRandomOrder()->first()->id_user,
+                'level' => 2,
+                'status' => $level2Status
+            ]);
+
+            $booking->update([
+                'status' => $bookingStatus
+            ]);
+
+            // =====================
+            // Fuel Logs
+            // =====================
+            if (in_array($bookingStatus, [2,4])) {
+
+                for ($j = 0; $j < $fuelLogsPerBooking; $j++) {
+                    FuelLog::factory()->create([
+                        'booking_id' => $booking->id_booking
+                    ]);
+                }
+
             }
         }
 
-        // ========================
-        // Fuel Logs
-        // ========================
-        foreach ($bookings as $booking) {
-            for ($i = 0; $i < $jumlahFuelLogsPerBooking; $i++) {
-                FuelLog::factory()->create([
-                    'booking_id' => $booking->id_booking,
-                ]);
-            }
-        }
-
-        // ========================
+        // =========================
         // Vehicle Services
-        // ========================
-        VehicleService::factory($jumlahVehicleServices)->create();
+        // =========================
+        VehicleService::factory($vehicleServices)->create();
 
         // Admin
         User::factory()->create([
@@ -108,5 +151,4 @@ class DatabaseSeeder extends Seeder
             'role' => 'manager',
         ]);
     }
-    
 }
