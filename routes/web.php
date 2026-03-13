@@ -65,6 +65,7 @@ Route::middleware(['auth','role:admin,employee,supervisor,manager'])->group(func
         Route::get('/booking/create', [BookingController::class, 'create'])->name('dashboard.booking.create');
         Route::post('/booking/create/action', [BookingController::class, 'store'])->name('dashboard.booking.create.action');
         Route::delete('/booking/delete/{id}', [BookingController::class, 'destroy'])->name('dashboard.booking.delete');
+        Route::delete('/booking/done/{id}', [BookingController::class, 'done'])->name('dashboard.booking.done');
 
         Route::get('/fuel-log', [FuelLogController::class, 'index'])->name('dashboard.fuel-log');
         Route::get('/fuel-log/{id_booking}', [FuelLogController::class, 'create'])->name('dashboard.fuel-log.create');

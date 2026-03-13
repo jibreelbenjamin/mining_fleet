@@ -155,26 +155,18 @@ class BookingController extends Controller
         return redirect()->route($this->route)->with(['successToast' => ucfirst($this->echo).' berhasil dibuat']);
     }
 
-    public function edit($id)
-    {
-        $data = $this->model::find($id);
-
-        if($data){
-            return view($this->view.'.form', ['mode' => 'update'], compact('data'));
-        } else {
-            return redirect()->route($this->route)->withErrors(['message' => ucfirst($this->echo).' tidak ditemukan']);
-        }
-    }
-
-    public function update(Request $request, $id )
+    public function done($id)
     {
         $data = $this->model::where($this->primary, $id)->firstOrFail();
 
-        if($data){
-            $validate = $request->validate($this->rules, $this->messages);
-            $data->update($validate);
+        if($data && ($data->status == 2)){
+            if($data->requested_by != Auth::user()->id_user){
+                return redirect()->route($this->route)->withErrors(['message' => ucfirst($this->echo).' invalid']);
+            }
+            $data->status = 4;
+            $data->save();
 
-            return redirect()->route($this->route)->with(['successToast' => ucfirst($this->echo).' berhasil diperbarui']);
+            return redirect()->route($this->route)->with(['successToast' => ucfirst($this->echo).' berhasil diselesaikan']);
         } else {
             return redirect()->route($this->route)->withErrors(['message' => ucfirst($this->echo).' tidak ditemukan']);
         }
@@ -182,16 +174,17 @@ class BookingController extends Controller
 
     public function destroy($id)
     {
-        $data = $this->model::findOrFail($id);
+        $data = $this->model::where($this->primary, $id)->firstOrFail();
 
-        if ($data->status == 1) {
+        if($data && ($data->status == 1)){
+            if($data->requested_by != Auth::user()->id_user){
+                return redirect()->route($this->route)->withErrors(['message' => ucfirst($this->echo).' invalid']);
+            }
             $data->delete();
-            return redirect()->route($this->route)
-                            ->with(['successToast' => ucfirst($this->echo).' berhasil dihapus']);
-            logActivity('menghapus '.$this->echo);
+
+            return redirect()->route($this->route)->with(['successToast' => ucfirst($this->echo).' berhasil dihapus']);
         } else {
-            return redirect()->route($this->route)
-                            ->withErrors(['message' => ucfirst($this->echo).' tidak dapat dihapus']);
+            return redirect()->route($this->route)->withErrors(['message' => ucfirst($this->echo).' tidak ditemukan']);
         }
     }
 }

@@ -1,59 +1,276 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# MiningFleet (Aplikasi Pemesanan Kendaraan)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 1. Deskripsi
+Aplikasi ini digunakan untuk memonitoring dan memanajemen pemakaian kendaraan perusahaan.  
+Fitur utama:
 
-## About Laravel
+- Booking kendaraan oleh admin atau pegawai
+- Approval berjenjang (Supervisor → Manager)
+- Input konsumsi BBM setelah perjalanan
+- Dashboard penggunaan kendaraan
+- Laporan periodik & export Excel
+- Log aktivitas setiap aksi penting
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 2. User & Login
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Role       | Email                    | Password   |
+|------------|--------------------------|------------|
+| Admin      | [a@admin.com]            | admin      |
+| Employee   | [a@employee.com]         | employee   |
+| Supervisor | [a@supervisor.com]       | supervisor |
+| Manager    | [a@manager.com]          | manager    |
 
-## Learning Laravel
+1. Buka halaman login aplikasi
+2. Masukkan email dan password sesuai tabel di atas
+3. Sistem akan mengarahkan user ke dashboard sesuai role masing-masing
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 3. Teknologi & Versi
 
-## Laravel Sponsors
+| Komponen       | Versi / Info                    |
+|----------------|---------------------------------|
+| PHP            | 8.5.2                           |
+| Database       | PostgreSQL 18.2                 |
+| Framework      | Laravel 12.22                   |
+| Frontend       | Blade / TailwindCSS / HTML5     |
+| Excel Export   | maatwebsite/excel               |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 4. Struktur Database (Ringkas)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Tabel utama:
 
-## Contributing
+- `users` → menampung admin, supervisor, manager  
+- `vehicles` → data kendaraan  
+- `bookings` → data pemesanan kendaraan  
+- `approvals` → approval berjenjang  
+- `fuel_logs` → catatan konsumsi BBM  
+- `vehicle_services` → catatan service kendaraan  
+- `logs` → catatan aktivitas sistem  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 5. Panduan Penggunaan Aplikasi
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Panduan berikut menjelaskan cara menggunakan sistem berdasarkan role pengguna.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Admin
 
-## License
+**Deskripsi**
+Admin bertanggung jawab untuk mengelola data kendaraan, driver, jadwal servis, serta membuat pemesanan kendaraan.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Fitur yang tersedia**
+
+* Mengelola data kendaraan
+* Mengelola data driver
+* Mengelola jadwal servis kendaraan
+* Export laporan periodik
+* Membuat pemesanan kendaraan
+* Menentukan driver
+* Menentukan pihak yang menyetujui (Supervisor dan Manager)
+* Melihat status pemesanan kendaraan
+* Menginput konsumsi BBM
+
+**Langkah Penggunaan**
+
+1. Login ke sistem menggunakan akun Admin.
+2. Buka menu **Pemesanan**.
+3. Klik **Tambah Pesanan**.
+4. Pilih kendaraan yang tersedia.
+5. Pilih driver yang akan mengemudikan kendaraan.
+6. Masukkan tujuan perjalanan.
+7. Tentukan tanggal mulai dan tanggal selesai.
+8. Pilih **Supervisor dan Manager** sebagai pihak yang menyetujui.
+9. Simpan data booking.
+10. Sistem akan mengirimkan permintaan persetujuan ke Supervisor & Manager.
+
+---
+
+# Employee
+
+**Deskripsi**
+Employee bertanggung jawab untuk melakukan input pemesanan kendaraan
+
+**Fitur yang tersedia**
+
+* Membuat data pemesanan kendaraan
+* Melihat status persetujuan pemesanan
+* Melihat riwayat penggunaan kendaraan
+
+**Langkah Penggunaan**
+
+1. Login ke sistem menggunakan akun Employee.
+2. Buka menu **Pemesanan**.
+3. Klik **Tambah Pesanan**.
+4. Pilih kendaraan yang tersedia.
+5. Pilih driver yang akan mengemudikan kendaraan.
+6. Masukkan tujuan perjalanan.
+7. Tentukan tanggal mulai dan tanggal selesai.
+8. Pilih **Supervisor dan Manager** sebagai pihak yang menyetujui.
+9. Simpan data booking.
+10. Sistem akan mengirimkan permintaan persetujuan ke Supervisor & Manager.
+
+---
+
+# Supervisor
+
+**Deskripsi**
+Supervisor bertanggung jawab melakukan **persetujuan level pertama** terhadap pemesanan kendaraan.
+
+**Fitur yang tersedia**
+
+* Melihat daftar pemesanan yang menunggu persetujuan
+* Menyetujui pemesanan kendaraan
+* Menolak pemesanan kendaraan
+* Melihat riwayat persetujuan
+
+**Langkah Penggunaan**
+
+1. Login ke sistem menggunakan akun Supervisor.
+2. Buka menu **Persetujuan**.
+3. Sistem akan menampilkan daftar booking yang menunggu persetujuan.
+4. Periksa detail pemesanan kendaraan.
+5. Pilih salah satu aksi:
+
+   * **Approve** untuk menyetujui booking.
+   * **Reject** untuk menolak booking.
+6. Jika disetujui, maka booking akan diteruskan ke **Manager** untuk persetujuan berikutnya.
+
+---
+
+# Manager
+
+**Deskripsi**
+Manager bertanggung jawab melakukan **persetujuan level kedua** terhadap pemesanan kendaraan.
+
+**Fitur yang tersedia**
+
+* Melihat daftar booking yang sudah disetujui oleh Supervisor
+* Menyetujui pemesanan kendaraan
+* Menolak pemesanan kendaraan
+* Melihat riwayat persetujuan
+
+**Langkah Penggunaan**
+
+1. Login ke sistem menggunakan akun Manager.
+2. Buka menu **Persetujuan**.
+3. Sistem akan menampilkan booking yang sudah disetujui oleh Supervisor.
+4. Periksa detail pemesanan kendaraan.
+5. Pilih salah satu aksi:
+
+   * **Approve** untuk menyetujui booking.
+   * **Reject** untuk menolak booking.
+6. Jika Manager menyetujui booking, maka status booking berubah menjadi **Approved** dan kendaraan dapat digunakan.
+
+---
+
+# Alur Kerja Sistem
+
+Berikut adalah alur proses pemesanan kendaraan dalam sistem.
+
+1. Admin/Pegawai membuat pemesanan kendaraan.
+2. Sistem menyimpan data booking dengan status **Pending Approval**.
+3. Supervisor melakukan persetujuan level pertama.
+4. Jika Supervisor menolak, maka booking berstatus **Rejected**.
+5. Jika Supervisor menyetujui, maka booking diteruskan ke Manager.
+6. Manager melakukan persetujuan level kedua.
+7. Jika Manager menolak, maka booking berstatus **Rejected**.
+8. Jika Manager menyetujui, maka booking berstatus **Approved**.
+9. Kendaraan dapat digunakan oleh pegawai.
+10. Admin/Pegawai menginput data konsumsi BBM.
+10. Setelah input konsumsi BBM selesai, selesaikan pesanan
+11. Status booking berubah menjadi **Completed**.
+
+
+---
+
+## 6. Panduan Instalasi
+
+Ikuti langkah berikut untuk menjalankan aplikasi di lingkungan lokal.
+
+1. Clone Repository
+
+Clone project dari repository:
+
+```bash
+git clone <repository-url>
+cd <project-folder>
+```
+
+2. Install Dependency
+
+Install semua dependency PHP menggunakan Composer:
+
+```bash
+composer install
+```
+
+Install dependency frontend (jika menggunakan Vite / npm):
+
+```bash
+npm install
+npm run dev
+```
+
+3. Konfigurasi Environment
+
+Salin file `.env.example` menjadi `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Generate application key:
+
+```bash
+php artisan key:generate
+```
+
+4. Konfigurasi Database (PostgreSQL)
+
+Edit file `.env` dan sesuaikan konfigurasi database:
+
+```
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=mining_fleet
+DB_USERNAME=postgres
+DB_PASSWORD=your_password
+```
+
+Pastikan database **mining_fleet** sudah dibuat di PostgreSQL.
+
+5. Migrasi dan Seeder Database
+
+Jalankan migration dan seeder untuk membuat tabel dan data awal:
+
+```bash
+php artisan migrate --seed
+```
+
+Seeder akan membuat beberapa user untuk login ke aplikasi.
+
+6. Jalankan Server
+
+Jalankan server Laravel:
+
+```bash
+php artisan serve
+```
+
+Aplikasi dapat diakses melalui browser:
+
+```
+http://127.0.0.1:8000
+```
+
+### 7. Login ke Aplikasi
+
+Gunakan akun yang tersedia pada bagian **User & Login** di README untuk masuk ke sistem.

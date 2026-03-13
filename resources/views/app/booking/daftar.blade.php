@@ -182,7 +182,7 @@
                               Detail
                             </button>
                             @if ($item->status == 2)  
-                            <button class="btn-hapus flex items-center w-full gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-done-alert" data-hs-overlay="#hs-done-alert" data-id="{{ $item->$id_data }}" data-nama="{{ $item->$id_data }}">
+                            <button class="btn-done flex items-center w-full gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-done-alert" data-hs-overlay="#hs-done-alert" data-id="{{ $item->$id_data }}" data-nama="{{ $item->$id_data }}">
                               <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check-icon lucide-clipboard-check"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
                               Pesanan selesai
                             </button>        
@@ -423,6 +423,23 @@
             });
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        let urlDone = "{{ route('dashboard.'.$page.'.done', ':id') }}";
+        const btnTrig = document.querySelectorAll('.btn-done');
+        const form = document.getElementById('done-form');
+        const text = document.getElementById('done-text');
+
+        btnTrig.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const id = this.dataset.id;
+                const nama = this.dataset.nama;
+
+                form.action = urlDone.replace(':id', id).replace('%3Aid', id)
+                text.innerHTML = `Selesaikan {{ $echo }} <strong>#${nama}</strong>? Setelah menyelesaikan formulir konsumsi BBM tidak dapat diedit ulang, pastikan seluruh data yang diinput sudah sesuai.`;
+            });
+        });
+    });
 </script>
 
 <!-- Detail Modal -->
@@ -649,7 +666,7 @@
             <h3 id="hs-done-alert-label" class="mb-2 text-xl font-bold text-gray-800">
               Konfirmasi Aksi
             </h3>
-            <p id="delete-text" class="text-gray-500">
+            <p id="done-text" class="text-gray-500">
               Text
             </p>
           </div>
@@ -660,7 +677,7 @@
         <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50" data-hs-overlay="#hs-done-alert">
           Kembali
         </button>
-        <form id="delete-form" action="" method="post">
+        <form id="done-form" action="" method="post">
           @csrf
           @method('DELETE')
         <button class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50 disabled:pointer-events-none">
