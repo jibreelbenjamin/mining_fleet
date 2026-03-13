@@ -1,4 +1,5 @@
-# MiningFleet (Aplikasi Pemesanan Kendaraan)
+# MiningFleet (Aplikasi monitoring kendaraan tambang)
+<img src="preview.png" width="700">
 
 ## 1. Deskripsi
 Aplikasi ini digunakan untuk memonitoring dan memanajemen pemakaian kendaraan perusahaan.  
