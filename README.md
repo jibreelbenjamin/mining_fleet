@@ -6,8 +6,8 @@ Aplikasi ini digunakan untuk memonitoring dan memanajemen pemakaian kendaraan pe
 Fitur utama:
 
 - Booking kendaraan oleh admin atau pegawai
-- Approval berjenjang (Supervisor → Manager)
-- Input konsumsi BBM setelah perjalanan
+- Approval berjenjang (Supervisor & Manager)
+- Input konsumsi BBM
 - Dashboard penggunaan kendaraan
 - Laporan periodik & export Excel
 - Log aktivitas setiap aksi penting
@@ -36,17 +36,18 @@ Fitur utama:
 | PHP            | 8.5.2                           |
 | Database       | PostgreSQL 18.2                 |
 | Framework      | Laravel 12.22                   |
-| Frontend       | Blade / TailwindCSS / HTML5     |
+| Frontend       | Blade / TailwindCSS             |
 | Excel Export   | maatwebsite/excel               |
 
 ---
 
-## 4. Struktur Database (Ringkas)
+## 4. Struktur Database
 
-Tabel utama:
+Tabel:
 
-- `users` → menampung admin, supervisor, manager  
-- `vehicles` → data kendaraan  
+- `users` → menampung admin, employee, supervisor, manager  
+- `vehicles` → data kendaraan
+- `drivers` → data sopir
 - `bookings` → data pemesanan kendaraan  
 - `approvals` → approval berjenjang  
 - `fuel_logs` → catatan konsumsi BBM  
@@ -71,10 +72,7 @@ Admin bertanggung jawab untuk mengelola data kendaraan, driver, jadwal servis, s
 * Mengelola data kendaraan
 * Mengelola data driver
 * Mengelola jadwal servis kendaraan
-* Export laporan periodik
 * Membuat pemesanan kendaraan
-* Menentukan driver
-* Menentukan pihak yang menyetujui (Supervisor dan Manager)
 * Melihat status pemesanan kendaraan
 * Menginput konsumsi BBM
 
@@ -100,9 +98,9 @@ Employee bertanggung jawab untuk melakukan input pemesanan kendaraan
 
 **Fitur yang tersedia**
 
-* Membuat data pemesanan kendaraan
-* Melihat status persetujuan pemesanan
-* Melihat riwayat penggunaan kendaraan
+* Membuat pemesanan kendaraan
+* Melihat status pemesanan kendaraan
+* Menginput konsumsi BBM
 
 **Langkah Penggunaan**
 
@@ -130,6 +128,7 @@ Supervisor bertanggung jawab melakukan **persetujuan level pertama** terhadap pe
 * Menyetujui pemesanan kendaraan
 * Menolak pemesanan kendaraan
 * Melihat riwayat persetujuan
+* Export laporan periodik
 
 **Langkah Penggunaan**
 
@@ -156,6 +155,7 @@ Manager bertanggung jawab melakukan **persetujuan level kedua** terhadap pemesan
 * Menyetujui pemesanan kendaraan
 * Menolak pemesanan kendaraan
 * Melihat riwayat persetujuan
+* Export laporan periodik
 
 **Langkah Penggunaan**
 
@@ -200,7 +200,7 @@ Ikuti langkah berikut untuk menjalankan aplikasi di lingkungan lokal.
 Clone project dari repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/jibreelbenjamin/mining_fleet.git
 cd <project-folder>
 ```
 
