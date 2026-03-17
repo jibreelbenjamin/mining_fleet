@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
         $users = 50;
         $drivers = 500;
         $vehicles = 1000;
-        $bookings = 7500;
-        $fuelLogsPerBooking = 7;
+        $bookings = 17500;
+        $fuelLogsPerBooking = fake()->numberBetween(0, 12);
         $vehicleServices = 25;
 
         // =========================
@@ -32,6 +32,38 @@ class DatabaseSeeder extends Seeder
         User::factory($users)->create();
         Driver::factory($drivers)->create();
         Vehicle::factory($vehicles)->create();
+
+        // Admin
+        User::factory()->create([
+            'nama' => 'Admin User',
+            'email' => 'a@admin.com',
+            'password' => Hash::make('admin'),
+            'role' => 'admin',
+        ]);
+
+        // Employee
+        User::factory()->create([
+            'nama' => 'Employee User',
+            'email' => 'a@employee.com',
+            'password' => Hash::make('employee'),
+            'role' => 'employee',
+        ]);
+
+        // Supervisor
+        User::factory()->create([
+            'nama' => 'Supervisor User',
+            'email' => 'a@supervisor.com',
+            'password' => Hash::make('supervisor'),
+            'role' => 'supervisor',
+        ]);
+
+        // Manager
+        User::factory()->create([
+            'nama' => 'Manager User',
+            'email' => 'a@manager.com',
+            'password' => Hash::make('manager'),
+            'role' => 'manager',
+        ]);
 
         // =========================
         // Booking + Approval Logic
@@ -105,7 +137,7 @@ class DatabaseSeeder extends Seeder
             // =====================
             if (in_array($bookingStatus, [2,4])) {
 
-                for ($j = 0; $j < $fuelLogsPerBooking; $j++) {
+                for ($j = 0; $j < fake()->numberBetween(0, 12); $j++) {
                     FuelLog::factory()->create([
                         'booking_id' => $booking->id_booking
                     ]);
@@ -118,37 +150,5 @@ class DatabaseSeeder extends Seeder
         // Vehicle Services
         // =========================
         VehicleService::factory($vehicleServices)->create();
-
-        // Admin
-        User::factory()->create([
-            'nama' => 'Admin User',
-            'email' => 'a@admin.com',
-            'password' => Hash::make('admin'),
-            'role' => 'admin',
-        ]);
-
-        // Employee
-        User::factory()->create([
-            'nama' => 'Employee User',
-            'email' => 'a@employee.com',
-            'password' => Hash::make('employee'),
-            'role' => 'employee',
-        ]);
-
-        // Supervisor
-        User::factory()->create([
-            'nama' => 'Supervisor User',
-            'email' => 'a@supervisor.com',
-            'password' => Hash::make('supervisor'),
-            'role' => 'supervisor',
-        ]);
-
-        // Manager
-        User::factory()->create([
-            'nama' => 'Manager User',
-            'email' => 'a@manager.com',
-            'password' => Hash::make('manager'),
-            'role' => 'manager',
-        ]);
     }
 }

@@ -28,15 +28,18 @@ return new class extends Migration
 
             $table->foreign('requested_by')
                 ->references('id_user')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
 
             $table->foreign('vehicle_id')
                 ->references('id_vehicle')
-                ->on('vehicles');
+                ->on('vehicles')
+                ->onDelete('cascade');
 
             $table->foreign('driver_id')
                 ->references('id_driver')
-                ->on('drivers');
+                ->on('drivers')
+                ->onDelete('cascade');
         });
     }
 

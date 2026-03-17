@@ -29,7 +29,8 @@ return new class extends Migration
 
             $table->foreign('approver')
                 ->references('id_user')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

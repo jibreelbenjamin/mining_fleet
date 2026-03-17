@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id('id_vehicle_service');
 
             $table->foreignId('vehicle_id')
-                ->constrained('vehicles','id_vehicle');
+                ->constrained('vehicles','id_vehicle')
+                ->cascadeOnDelete();
 
             $table->dateTime('service_date');
 
